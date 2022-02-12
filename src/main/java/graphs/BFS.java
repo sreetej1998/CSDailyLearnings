@@ -1,6 +1,7 @@
 package graphs;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -21,34 +22,18 @@ public class BFS {
 
     public static void main(String[] args) {
         ArrayList<ArrayList<Integer>> adjList =  new ArrayList<>();
-        adjList.add(new ArrayList<>());
-        adjList.add(new ArrayList<Integer>(){
-            {
-                add(2);
-                add(3);
-            }
-        });
-        adjList.add(new ArrayList<Integer>(){
-            {
-                add(1);
-                add(3);
-            }
-        });
-        adjList.add(new ArrayList<Integer>(){
-            {
-                add(1);
-                add(2);
-            }
-        });
+        adjList.add(new ArrayList<Integer>(Arrays.asList(1,2)));
+        adjList.add(new ArrayList<Integer>(Arrays.asList(0,2)));
+        adjList.add(new ArrayList<Integer>(Arrays.asList(1,0)));
         System.out.println(BFSForGraph(3, adjList));
     }
 
 
     public static ArrayList<Integer> BFSForGraph( int V, ArrayList<ArrayList<Integer>> adjacencyList) {
         ArrayList<Integer> bfs = new ArrayList<>();
-        boolean[] visited = new boolean[V + 1];
+        boolean[] visited = new boolean[V];
 
-        for(int i = 1; i <= V; i++ ) {
+        for(int i = 0; i < V; i++ ) {
             if(!visited[i]) {
                 Queue<Integer> queue = new LinkedList<>();
                 queue.add(i);
@@ -58,8 +43,8 @@ public class BFS {
                     Integer start = queue.poll();
                     bfs.add(start);
                     for(Integer node: adjacencyList.get(start)) {
-                        if(!visited[i]) {
-                            visited[i] = true;
+                        if(!visited[node]) {
+                            visited[node] = true;
                             queue.add(node);
                         }
                     }
