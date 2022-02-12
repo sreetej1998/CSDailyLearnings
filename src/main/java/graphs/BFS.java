@@ -14,8 +14,8 @@ Steps -
 1) Iterate over every node to avoid missing unconnected components.
 2) if the node is not visited, perform BFS on it
 3) add the element to your queue, and while the queue is not empty perform step 4
-4) de-queue your element and add its adj nodes to the queue and de-queued element
-   to your bfs, mark it as visited.
+4) de-queue your element and add its adj nodes to the queue and add the de-queued element
+   to your bfs output, mark it as visited.
 5) return your BFS array
  */
 public class BFS {
