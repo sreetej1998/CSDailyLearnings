@@ -32,7 +32,9 @@ public class BiPartiteDFS {
             } else {
                 if(colored[neigh]==0) {
                     colored[neigh] = -(colored[node]);
-                    return dfs(neigh, adjList, colored);
+                    if( !dfs(neigh, adjList, colored)) {
+                        return false;
+                    }
                 }
             }
         }
