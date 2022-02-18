@@ -8,8 +8,8 @@
 .idea/**/dictionaries
 .idea/**/shelf
 
-.gradle/**/
-build/**/
+.gradle/
+/build/
 
 # AWS User-specific
 .idea/**/aws.xml
