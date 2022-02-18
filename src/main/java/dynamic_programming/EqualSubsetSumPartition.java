@@ -24,6 +24,10 @@ public class EqualSubsetSumPartition {
     }
 //Recursion
     public static boolean equalSubsetSumPartition(int i, int input[], int currSum, int totalSum) {
+        // base check
+        if (totalSum == 0 || input.length == 0) {
+            return true;
+        }
         if(totalSum%2 == 0 && currSum == totalSum/2) {
             return true;
         }
