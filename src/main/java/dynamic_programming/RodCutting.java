@@ -29,36 +29,30 @@ public class RodCutting {
         if(i>=prices.length) {
             return 0;
         }
-        int sell = 0, sellDontInc = 0;
+        int sell = 0;
         if(rodLength >= lengths[i]) {
-            sell = prices[i] + rodCutting(prices, lengths, rodLength - lengths[i], i+1);
+            sell = prices[i] + rodCutting(prices, lengths, rodLength - lengths[i], i);
         }
-        if(rodLength >= lengths[i]) {
-            sellDontInc = prices[i] + rodCutting(prices, lengths, rodLength - lengths[i], i);
-        }
-        int dontSell = rodCutting(prices, lengths, rodLength, i+1);
-        return Math.max(sell, Math.max(dontSell, sellDontInc));
+        int sellDontInc = rodCutting(prices, lengths, rodLength, i+1);
+
+        return  Math.max(sell, sellDontInc);
     }
 
     public static int rodCuttingTopDown(int prices[], int lengths[], int rodLength, int i) {
         if(i>=prices.length) {
             return 0;
         }
-        int sell = 0, sellDontInc = 0;
         if(dp[i][rodLength]!=-1) {
             return dp[i][rodLength];
         }
+        int sell = 0;
+        if(rodLength >= lengths[i]) {
+            sell = prices[i] + rodCuttingTopDown(prices, lengths, rodLength - lengths[i], i);
+            dp[i][rodLength - lengths[i]] = sell;
+        }
+        int sellDontInc = rodCuttingTopDown(prices, lengths, rodLength, i+1);
+        dp[i+1][rodLength] = sellDontInc;
 
-        if(rodLength >= lengths[i]) {
-            sell = prices[i] + rodCutting(prices, lengths, rodLength - lengths[i], i+1);
-            dp[i+1][rodLength - lengths[i]] = sell;
-        }
-        if(rodLength >= lengths[i]) {
-            sellDontInc = prices[i] + rodCutting(prices, lengths, rodLength - lengths[i], i);
-            dp[i][rodLength - lengths[i]] = sellDontInc;
-        }
-        int dontSell = rodCutting(prices, lengths, rodLength, i+1);
-        dp[i+1][rodLength] = dontSell;
-        return Math.max(dp[i+1][rodLength - lengths[i]], Math.max(dp[i][rodLength - lengths[i]] , dp[i+1][rodLength]));
+        return  Math.max(sell, sellDontInc);
     }
 }
