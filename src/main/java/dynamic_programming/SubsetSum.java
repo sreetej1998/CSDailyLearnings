@@ -36,9 +36,9 @@ public class SubsetSum {
         if(dp[i+1][currSum]!=0) {
             return dp[i+1][currSum] == 1;
         }
-        boolean include = subsetSum(sum, input, i+1, currSum + input[i]);
+        boolean include = subsetSumTopDown(sum, input, i+1, currSum + input[i], dp);
         dp[i+1][currSum + input[i]] = include ? 1: -1;
-        boolean dontInclude = subsetSum(sum, input, i+1, currSum);
+        boolean dontInclude = subsetSumTopDown(sum, input, i+1, currSum, dp);
         dp[i+1][currSum] = include ? 1: -1;
         return include || dontInclude;
     }
