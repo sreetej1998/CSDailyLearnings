@@ -49,9 +49,9 @@ public class EqualSubsetSumPartition {
         if(dp[i][currSum]!=-1) {
             return dp[i][currSum] == 1;
         }
-        boolean include = equalSubsetSumPartition(i+1, input, currSum+input[i], totalSum);
+        boolean include = equalSubsetSumPartitionTopDown(i+1, input, currSum+input[i], totalSum);
         dp[i+1][currSum + input[i]] = include ? 1 : 0;
-        boolean dontInclude = equalSubsetSumPartition(i+1, input, currSum, totalSum);
+        boolean dontInclude = equalSubsetSumPartitionTopDown(i+1, input, currSum, totalSum);
         dp[i+1][currSum] = include ? 1 : 0;
         return include || dontInclude;
     }
