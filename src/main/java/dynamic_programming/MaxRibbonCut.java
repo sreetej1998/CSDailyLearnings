@@ -44,12 +44,16 @@ public class MaxRibbonCut {
         if(dp[i][totalLength]!=-1) {
             return dp[i][totalLength];
         }
-        int inc = maxRibbonPieces(i, totalLength - ribbonLengths[i], ribbonLengths);
-        if(inc != Integer.MIN_VALUE) {
-            inc+=1;
+        int inc = 0;
+        if(totalLength > ribbonLengths[i]) {
+            inc = maxRibbonPiecesTopDown(i, totalLength - ribbonLengths[i], ribbonLengths);
+            if(inc != Integer.MIN_VALUE) {
+                inc+=1;
+            }
+            dp[i][totalLength - ribbonLengths[i]] = inc;
         }
-        dp[i][totalLength - ribbonLengths[i]] = inc;
-        int dontInc = maxRibbonPieces(i+1, totalLength, ribbonLengths);
+
+        int dontInc = maxRibbonPiecesTopDown(i+1, totalLength, ribbonLengths);
         dp[i+1][totalLength] = dontInc;
         return Math.max(inc, dontInc);
     }
