@@ -30,8 +30,8 @@ public class MinimumSubsetDifference {
         if(dp[i][sum1]!=0) {
             return dp[i][sum1];
         }
-        int diff1 = minimumSubSetDifference(input, sum1 + input[i], sum2, i+1);
-        int diff2 = minimumSubSetDifference(input, sum1, sum2 + input[i], i+1);
+        int diff1 = minimumSubSetDifferenceTopDown(input, sum1 + input[i], sum2, i+1);
+        int diff2 = minimumSubSetDifferenceTopDown(input, sum1, sum2 + input[i], i+1);
         dp[i][sum1] = Math.min(diff1, diff2);
         return dp[i][sum1];
     }
