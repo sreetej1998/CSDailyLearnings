@@ -40,9 +40,9 @@ public class CountOfSubsetSum {
         if(dp[i][currSum] !=-1) {
             return dp[i][currSum];
         }
-        int include = countSubSetSum(input, i+1, sum, currSum + input[i]);
+        int include = countSubSetSumTopDown(input, i+1, sum, currSum + input[i]);
         dp[i+1][currSum + input[i]] = include;
-        int dontInclude = countSubSetSum(input, i+1, sum, currSum);
+        int dontInclude = countSubSetSumTopDown(input, i+1, sum, currSum);
         dp[i+1][currSum] = dontInclude;
         return  dp[i+1][currSum + input[i]] + dp[i+1][currSum];
     }
