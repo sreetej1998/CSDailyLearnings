@@ -1,5 +1,8 @@
 package dynamic_programming;
-
+/*
+Given an infinite supply of ‘n’ coin denominations and a total money amount,
+we are asked to find the minimum number of coins needed to make up that amount.
+ */
 public class MinimumCoinChange {
     static int dp[][] = new int[1000][1000];
     public static void main(String[] args) {
