@@ -5,7 +5,6 @@ public class MajorityElement {
         int[] nums = new int[] {1, 1, 1,3};
         System.out.println(majorityElement(nums));
     }
-
     public static int majorityElement(int[] nums) {
         int count = 0;
         Integer candidate = null;
